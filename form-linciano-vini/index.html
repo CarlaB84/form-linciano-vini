@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linciano Vini - Feedback Post-Vendita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo-text {
+            font-size: 2.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: #1e3a8a;
+        }
+        
+        .logo-text .red {
+            color: #dc2626;
+            font-weight: 400;
+        }
+        
+        .tagline {
+            font-style: italic;
+            color: #64748b;
+            margin-top: 8px;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(220,38,38,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            opacity: 0.95;
+            font-size: 1em;
+            font-weight: 300;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-container {
+            padding: 50px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 40px;
+        }
+        
+        .section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 1.1em;
+            color: #1e3a8a;
+            margin-bottom: 30px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: #dc2626;
+            margin-right: 15px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #334155;
+            font-size: 0.9em;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.05);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 12px;
+        }
+        
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        
+        .radio-option:hover,
+        .checkbox-option:hover {
+            background: white;
+            border-color: #1e3a8a;
+        }
+        
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #dc2626;
+        }
+        
+        .nps-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 8px;
+        }
+        
+        .nps-button {
+            flex: 1;
+            height: 48px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 400;
+            color: #64748b;
+        }
+        
+        .nps-button:hover {
+            background: #f1f5f9;
+            border-color: #1e3a8a;
+            color: #1e3a8a;
+        }
+        
+        .nps-button.selected {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+        
+        .nps-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.85em;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .wine-preferences {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .wine-option {
+            padding: 15px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .wine-option:hover {
+            border-color: #dc2626;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1);
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+        }
+        
+        .submit-btn {
+            background: #dc2626;
+            color: white;
+            padding: 16px 60px;
+            border: none;
+            font-size: 0.95em;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+        
+        .privacy-note {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-left: 3px solid #1e3a8a;
+            font-size: 0.85em;
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        .required {
+            color: #dc2626;
+            font-weight: 400;
+        }
+        
+        .consent-section {
+            background: #f8fafc;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .consent-option {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .consent-option input[type="checkbox"] {
+            margin-top: 2px;
+            margin-right: 12px;
+        }
+        
+        .consent-option span {
+            font-size: 0.9em;
+            color: #475569;
+            line-height: 1.5;
+        }
+        
+        .consent-option a {
+            color: #1e3a8a;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .consent-option a:hover {
+            border-bottom-color: #1e3a8a;
+        }
+        
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                padding: 40px 30px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nps-scale {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+            }
+            
+            .submit-btn {
+                padding: 14px 40px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-section">
+        <div class="logo-text">
+            <span class="red">LINCIANO</span>vini.it
+        </div>
+        <div class="tagline">completi per vocazione, unici per spirito</div>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>ESPERIENZA DI ACQUISTO</h1>
+            <p>La sua opinione è fondamentale per migliorare il nostro servizio</p>
+        </div>
+        
+        <form id="marketingForm" class="form-container">
+            <!-- Sezione Anagrafica -->
+            <div class="section">
+                <h2 class="section-title">Dati Personali</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome <span class="required">*</span></label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cognome">Cognome <span class="required">*</span></label>
+                        <input type="text" id="cognome" name="cognome" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="azienda">Ragione Sociale</label>
+                        <input type="text" id="azienda" name="azienda">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="settore">Tipologia Cliente <span class="required">*</span></label>
+                        <select id="settore" name="settore" required>
+                            <option value="">Seleziona tipologia</option>
+                            <option value="bar">Bar</option>
+                            <option value="ristorante">Ristorante</option>
+                            <option value="privato">Privato</option>
+                            <option value="enoteca">Enoteca</option>
+                            <option value="gdo">GDO</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="citta">Città</label>
+                        <input type="text" id="citta" name="citta">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="provincia">Provincia</label>
+                        <input type="text" id="provincia" name="provincia" maxlength="2" style="text-transform: uppercase;">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sezione Acquisto -->
+            <div class="section">
+                <h2 class="section-title">Dettagli Ordine</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prodotto">Prodotti Acquistati <span class="required">*</span></label>
+                        <input type="text" id="prodotto" name="prodotto" placeholder="es. Brunello di Montalcino 2018" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="numeroOrdine">Numero Ordine</label>
+                        <input type="text" id="numeroOrdine" name="numeroOrdine">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dataAcquisto">Data Acquisto</label>
+                        <input type="date" id="dataAcquisto" name="dataAcquisto">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="importo">Valore Ordine (€)</label>
+                        <input type="text" id="importo" name="importo" placeholder="es. 250,00">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sezione Valutazione -->
+            <div class="section">
+                <h2 class="section-title">Valutazione del Servizio</h2>
+                
+                <div class="form-group">
+                    <label>Come valuta la qualità dei nostri vini?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="qualita" value="eccellente">
+                            Eccellente
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="qualita" value="ottima">
+                            Ottima
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="qualita" value="buona">
+                            Buona
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="qualita" value="sufficiente">
+                            Sufficiente
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Quali aspetti ha apprezzato maggiormente?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="aspetti" value="qualita-vino">
+                            Qualità del vino
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="aspetti" value="rapporto-qualita-prezzo">
+                            Rapporto qualità/prezzo
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="aspetti" value="assistenza">
+                            Assistenza sommelier
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="aspetti" value="consegna">
+                            Puntualità consegna
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="aspetti" value="packaging">
+                            Packaging
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="aspetti" value="selezione">
+                            Ampiezza selezione
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Consiglierebbe Linciano Vini ai suoi colleghi?</label>
+                    <div class="nps-scale">
+                        <button type="button" class="nps-button" data-value="0">0</button>
+                        <button type="button" class="nps-button" data-value="1">1</button>
+                        <button type="button" class="nps-button" data-value="2">2</button>
+                        <button type="button" class="nps-button" data-value="3">3</button>
+                        <button type="button" class="nps-button" data-value="4">4</button>
+                        <button type="button" class="nps-button" data-value="5">5</button>
+                        <button type="button" class="nps-button" data-value="6">6</button>
+                        <button type="button" class="nps-button" data-value="7">7</button>
+                        <button type="button" class="nps-button" data-value="8">8</button>
+                        <button type="button" class="nps-button" data-value="9">9</button>
+                        <button type="button" class="nps-button" data-value="10">10</button>
+                    </div>
+                    <div class="nps-labels">
+                        <span>Per niente</span>
+                        <span>Certamente</span>
+                    </div>
+                    <input type="hidden" id="npsScore" name="npsScore">
+                </div>
+            </div>
+            
+            <!-- Sezione Preferenze Vini -->
+            <div class="section">
+                <h2 class="section-title">Preferenze Enologiche</h2>
+                
+                <div class="form-group">
+                    <label>Quali tipologie di vino preferisce?</label>
+                    <div class="wine-preferences">
+                        <label class="wine-option">
+                            <input type="checkbox" name="tipologia-vino" value="rossi">
+                            Vini Rossi
+                        </label>
+                        <label class="wine-option">
+                            <input type="checkbox" name="tipologia-vino" value="bianchi">
+                            Vini Bianchi
+                        </label>
+                        <label class="wine-option">
+                            <input type="checkbox" name="tipologia-vino" value="bollicine">
+                            Bollicine
+                        </label>
+                        <label class="wine-option">
+                            <input type="checkbox" name="tipologia-vino" value="rosati">
+                            Rosati
+                        </label>
+                        <label class="wine-option">
+                            <input type="checkbox" name="tipologia-vino" value="passiti">
+                            Passiti
+                        </label>
+                        <label class="wine-option">
+                            <input type="checkbox" name="tipologia-vino" value="liquori">
+                            Liquori
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="regioni">Regioni vinicole di interesse</label>
+                        <input type="text" id="regioni" name="regioni" placeholder="es. Toscana, Piemonte, Sicilia">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fascia-prezzo">Fascia di prezzo preferita</label>
+                        <select id="fascia-prezzo" name="fascia-prezzo">
+                            <option value="">Seleziona fascia</option>
+                            <option value="0-15">€ 0 - 15</option>
+                            <option value="15-30">€ 15 - 30</option>
+                            <option value="30-50">€ 30 - 50</option>
+                            <option value="50-100">€ 50 - 100</option>
+                            <option value="100+">€ 100+</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sezione Comunicazioni -->
+            <div class="section">
+                <h2 class="section-title">Preferenze di Comunicazione</h2>
+                
+                <div class="form-group">
+                    <label>Desidera ricevere informazioni su:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="interessi" value="nuovi-arrivi">
+                            Nuovi arrivi
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="interessi" value="offerte">
+                            Offerte speciali
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="interessi" value="degustazioni">
+                            Eventi e degustazioni
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="interessi" value="abbonamenti">
+                            Abbonamenti vino
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="frequenza">Frequenza comunicazioni</label>
+                        <select id="frequenza" name="frequenza">
+                            <option value="">Seleziona frequenza</option>
+                            <option value="settimanale">Settimanale</option>
+                            <option value="quindicinale">Quindicinale</option>
+                            <option value="mensile">Mensile</option>
+                            <option value="occasionale">Solo occasioni speciali</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="canale-preferito">Canale preferito</label>
+                        <select id="canale-preferito" name="canale-preferito">
+                            <option value="">Seleziona canale</option>
+                            <option value="email">Email</option>
+                            <option value="whatsapp">WhatsApp</option>
+                            <option value="telefono">Telefono</option>
+                            <option value="sms">SMS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sezione Note -->
+            <div class="section">
+                <h2 class="section-title">Note e Suggerimenti</h2>
+                
+                <div class="form-group">
+                    <label for="note">Come possiamo migliorare il nostro servizio?</label>
+                    <textarea id="note" name="note" placeholder="I suoi suggerimenti sono preziosi per noi..."></textarea>
+                </div>
+            </div>
+            
+            <!-- Consensi -->
+            <div class="consent-section">
+                <div class="consent-option">
+                    <input type="checkbox" name="privacy" id="privacy" required>
+                    <span>
+                        Dichiaro di aver letto e accettato l'<a href="#">informativa sulla privacy</a> 
+                        ai sensi del Regolamento UE 2016/679 (GDPR) <span class="required">*</span>
+                    </span>
+                </div>
+                
+                <div class="consent-option">
+                    <input type="checkbox" name="marketing" id="marketing">
+                    <span>
+                        Acconsento al trattamento dei miei dati per finalità di marketing e comunicazioni commerciali
+                    </span>
+                </div>
+                
+                <div class="consent-option">
+                    <input type="checkbox" name="profilazione" id="profilazione">
+                    <span>
+                        Acconsento al trattamento dei miei dati per attività di profilazione e offerte personalizzate
+                    </span>
+                </div>
+            </div>
+            
+            <div class="submit-section">
+                <button type="submit" class="submit-btn">Invia Feedback</button>
+                
+                <div class="privacy-note">
+                    I suoi dati verranno trattati nel pieno rispetto della normativa vigente in materia di privacy. 
+                    Utilizziamo le informazioni raccolte esclusivamente per migliorare i nostri servizi e proporle 
+                    offerte in linea con i suoi interessi.
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        // Gestione NPS Score
+        const npsButtons = document.querySelectorAll('.nps-button');
+        const npsScoreInput = document.getElementById('npsScore');
+        
+        npsButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                npsButtons.forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+                npsScoreInput.value = this.dataset.value;
+            });
+        });
+        
+        // Gestione invio form
+        document.getElementById('marketingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validazione privacy
+            if (!document.getElementById('privacy').checked) {
+                alert('È necessario accettare l\'informativa sulla privacy per procedere.');
+                return;
+            }
+            
+            // Raccolta dati
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (!Array.isArray(data[key])) {
+                        data[key] = [data[key]];
+                    }
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Timestamp
+            data.timestamp = new Date().toISOString();
+            
+            // Log dei dati (sostituire con invio al server)
+            console.log('Dati acquisiti:', data);
+            
+            // Messaggio di conferma elegante
+            alert('La ringraziamo per il suo prezioso feedback.\n\nI suoi dati sono stati registrati correttamente.\nLa contatteremo presto con proposte selezionate per lei.\n\nCordiali saluti,\nIl Team Linciano Vini');
+            
+            // Opzionale: reset form
+            // this.reset();
+        });
+        
+        // Formattazione provincia in maiuscolo
+        document.getElementById('provincia').addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+    </script>
+</body>
+</html>
